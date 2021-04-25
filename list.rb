@@ -1,8 +1,16 @@
 require './item'
 
 class List
+# print styles
+LINE_WIDTH = 42
+INDEX_COL_WIDTH = 5
+ITEM_COL_WIDTH = 20
+DEADLINE_COL_WIDTH = 10
+
 attr_accessor :label
 attr_writer :items
+
+
 
 def initialize(label)
     @label = label
@@ -41,6 +49,30 @@ def priority
 end
 
 def print
+    puts "-" * LINE_WIDTH
+    puts " " * 16 + self.label.upcase
+    puts "-" * LINE_WIDTH
+    puts "#{'Index'.ljust(INDEX_COL_WIDTH)} | #{'Item'.ljust(ITEM_COL_WIDTH)} | #{'Deadline'.ljust(DEADLINE_COL_WIDTH)}"
+    puts "-" * LINE_WIDTH
+    @items.each_with_index do |item, i|
+        puts "#{i.to_s.ljust(INDEX_COL_WIDTH)} | #{item.title.capitalize.ljust(ITEM_COL_WIDTH)} | #{item.deadline.ljust(DEADLINE_COL_WIDTH)}"
+    end
+    puts "-" * LINE_WIDTH
+end
+
+def print_full_item(index)
+    item = self[index]
+    return nil if !valid_index?(index)
+    puts "-" * LINE_WIDTH
+    puts "#{item.title.capitalize.ljust(LINE_WIDTH/2)}#{item.deadline.rjust(LINE_WIDTH/2)}"
+    puts "#{item.description}"
+    puts "-" * LINE_WIDTH
+end
+
+def up(index, amount)
+    item = self[index]
+    return false if !valid_index?(index)
+ 
     
 end
 
