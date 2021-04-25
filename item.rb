@@ -1,7 +1,11 @@
 class Item
+    attr_accessor :title, :description 
+    attr_reader :deadline
 
     def self.valid_date?(date_string)
-       parts = date_string.split("-").map(&:to_i)
+       date_split = date_string.split("-") 
+       parts = date_split.map(&:to_i)
+       return false if date_split[0].length != 4
        return false if parts.length != 3
        return false if parts[1] > 12
        return false if parts[2] > 31
@@ -15,11 +19,13 @@ class Item
         @description = description
     end
 
+    def deadline=(new_deadline)
+        raise "The deadline is an invalid date" if !Item.valid_date?(new_deadline)
+        @deadline = new_deadline
+    end
 
 
 end
-
-
 
 
 
