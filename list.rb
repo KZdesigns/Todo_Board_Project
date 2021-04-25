@@ -10,8 +10,6 @@ DEADLINE_COL_WIDTH = 10
 attr_accessor :label
 attr_writer :items
 
-
-
 def initialize(label)
     @label = label
     @items = []
@@ -69,11 +67,30 @@ def print_full_item(index)
     puts "-" * LINE_WIDTH
 end
 
-def up(index, amount)
-    item = self[index]
+def up(index, amount=1)
     return false if !valid_index?(index)
- 
-    
+    amount.times do
+        break if index < 0 
+        swap(index, index - 1)
+        index = index - 1
+    end
+
+    true
+end
+
+def down(index, amount=1)
+    return false if !valid_index?(index)
+    amount.times do
+        break if index < 0 
+        swap(index, index + 1)
+        index = index + 1
+    end
+
+    true
+end
+
+def sort_by_date!
+    @items.sort_by! { |item| item.deadline }
 end
 
 
