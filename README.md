@@ -8,29 +8,29 @@ We'll be writing two phases of this project, with the second expanding functiona
 
 # Commands
 1. mktodo <title> <deadline> <optional description>
-- makes a todo with the given information
+>-   makes a todo with the given information
 2. up <index> <optional amount>
-- raises the todo up the list
+>- raises the todo up the list
 3. down <index> <optional amount>
-- lowers the todo down the list
+>- lowers the todo down the list
 4. swap <index_1> <index_2>
-- swaps the position of todos
+>- swaps the position of todos
 5. sort
-- sorts the todos by date
+>- sorts the todos by date
 6. priority
-- prints the todo at the top of the list
+>- prints the todo at the top of the list
 7. print <optional index>
-- prints all todos if no index is provided
-- prints full information of the specified todo if an index is provided
+>- prints all todos if no index is provided
+>- prints full information of the specified todo if an index is provided
 8. quit
-- returns false
+>- returns false
 
 ### Version 1: One true list
 - [x] Phase 1: One true list 
 Our first iteration of this project will have the TodoBoard only manage a single List which contains many Items.
 
 ### Version 2: So little time, so much todo
-- [ ]Phase 2: So little time, so much todo
+- [ ] Phase 2: So little time, so much todo
 In this phase of the project, we'll refactor our code to support the following features:
 
 marking items as done
