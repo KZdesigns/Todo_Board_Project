@@ -24,7 +24,6 @@ class Item
         @deadline = new_deadline
     end
 
-
 end
 
 
