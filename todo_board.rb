@@ -23,6 +23,10 @@ class TodoBoard
             @list.sort_by_date!
         when 'priority'
             @list.print_priority
+        when 'toggle'
+            @list.toggle_item(args[0].to_i)
+        when 'rm'
+            @list.remove_item(args[0].to_i)
         when 'print'
             if args.empty?
                 @list.print

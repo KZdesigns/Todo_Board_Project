@@ -2,10 +2,11 @@ require './item.rb'
 
 class List
     # print styles
-    LINE_WIDTH = 42
+    LINE_WIDTH = 55
     INDEX_COL_WIDTH = 5
     ITEM_COL_WIDTH = 20
     DEADLINE_COL_WIDTH = 10
+    CHECKMARK = "\u2713".force_encoding('utf-8')
 
     attr_accessor :label
     attr_writer :items
@@ -47,22 +48,24 @@ class List
 
     def print
         puts "-" * LINE_WIDTH
-        puts " " * 16 + self.label.upcase
+        puts " " * 22 + self.label.upcase
         puts "-" * LINE_WIDTH
-        puts "#{'Index'.ljust(INDEX_COL_WIDTH)} | #{'Item'.ljust(ITEM_COL_WIDTH)} | #{'Deadline'.ljust(DEADLINE_COL_WIDTH)}"
+        puts "#{'Index'.ljust(INDEX_COL_WIDTH)} | #{'Item'.ljust(ITEM_COL_WIDTH)} | #{'Deadline'.ljust(DEADLINE_COL_WIDTH)} | Done"
         puts "-" * LINE_WIDTH
         @items.each_with_index do |item, i|
-            puts "#{i.to_s.ljust(INDEX_COL_WIDTH)} | #{item.title.capitalize.ljust(ITEM_COL_WIDTH)} | #{item.deadline.ljust(DEADLINE_COL_WIDTH)}"
+            status = item.done ? CHECKMARK : ' '
+            puts "#{i.to_s.ljust(INDEX_COL_WIDTH)} | #{item.title.ljust(ITEM_COL_WIDTH)} | #{item.deadline.ljust(DEADLINE_COL_WIDTH)} | [#{status}]"
         end
         puts "-" * LINE_WIDTH
     end
 
     def print_full_item(index)
         item = self[index]
-        return nil if !valid_index?(index)
+        return if item.nil?
+        status = item.done ? CHECKMARK : ' '
         puts "-" * LINE_WIDTH
-        puts "#{item.title.capitalize.ljust(LINE_WIDTH/2)}#{item.deadline.rjust(LINE_WIDTH/2)}"
-        puts "#{item.description}"
+        puts "#{item.title}".ljust(LINE_WIDTH/2) + "#{item.deadline} [#{status}]".rjust(LINE_WIDTH/2)
+        puts item.description
         puts "-" * LINE_WIDTH
     end
 
@@ -90,6 +93,17 @@ class List
 
     def sort_by_date!
         @items.sort_by! { |item| item.deadline }
+    end
+
+    def toggle_item(index)
+        item = self[index]
+        item.toggle if !item.nil?
+    end
+
+    def remove_item(index)
+        return false if !valid_index?(index)
+        @items.delete_at(index)
+        true
     end
 
 end
