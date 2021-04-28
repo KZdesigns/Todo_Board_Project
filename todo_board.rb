@@ -27,6 +27,8 @@ class TodoBoard
             @list.toggle_item(args[0].to_i)
         when 'rm'
             @list.remove_item(args[0].to_i)
+        when 'purge'
+            @list.purge
         when 'print'
             if args.empty?
                 @list.print

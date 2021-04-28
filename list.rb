@@ -106,4 +106,14 @@ class List
         true
     end
 
+    def purge
+         @items.select! { |item| item.done != true }
+    end
+
+
+
+       
+
+
+
 end
