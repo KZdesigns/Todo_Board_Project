@@ -28,7 +28,6 @@ class Item
     def toggle
         @done = !@done
     end
-
 end
 
 

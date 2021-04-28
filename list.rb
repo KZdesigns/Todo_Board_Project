@@ -109,11 +109,4 @@ class List
     def purge
          @items.select! { |item| item.done != true }
     end
-
-
-
-       
-
-
-
 end

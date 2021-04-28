@@ -2,38 +2,44 @@ require './list.rb'
 
 class TodoBoard
 
-    def initialize(label)
-        @list = List.new(label)
+    def initialize(*label)
+        @lists = {}
     end
 
     def get_command
         print "\nEnter a command: "
-        cmd, *args = gets.chomp.split(' ')
+        cmd, target, *args = gets.chomp.split(' ')
 
         case cmd
+        when 'showall'
+            @lists.each_value(&:print)
+        when 'ls'
+            @lists.keys.each { |label| puts ' ' + label }
+        when 'mklist'
+            @lists[target] = List.new(target)
         when 'mktodo'
-            @list.add_item(*args)
+            @lists[target].add_item(*args)
         when 'up'
-            @list.up(*args.map(&:to_i))
+            @lists[target].up(*args.map(&:to_i))
         when 'down'
-            @list.down(*args.map(&:to_i))
+            @lists[target].down(*args.map(&:to_i))
         when 'swap'
-            @list.swap(*args.map(&:to_i))
+            @lists[target].swap(*args.map(&:to_i))
         when 'sort'
-            @list.sort_by_date!
+            @lists[target].sort_by_date!
         when 'priority'
-            @list.print_priority
+            @lists[target].print_priority
         when 'toggle'
-            @list.toggle_item(args[0].to_i)
+            @lists[target].toggle_item(args[0].to_i)
         when 'rm'
-            @list.remove_item(args[0].to_i)
+            @lists[target].remove_item(args[0].to_i)
         when 'purge'
-            @list.purge
+            @lists[target].purge
         when 'print'
             if args.empty?
-                @list.print
+                @lists[target].print
             else
-                @list.print_full_item(args[0].to_i)
+                @lists[target].print_full_item(args[0].to_i)
             end
         when 'quit'
             return false
@@ -49,5 +55,6 @@ class TodoBoard
             return if !get_command
         end
     end
-
 end
+
+TodoBoard.new.run
