@@ -7,34 +7,34 @@ We'll be writing two phases of this project, with the second expanding functiona
 2. A board that manages multiple todo lists with extended features for lists and items
 
 # Commands
-mklist <new_list_label>
+1. mklist <new_list_label>
 - > make a new list with the given label
-ls
+2. ls
 - > print the labels of all lists
-showall
+3. showall
 - > print all lists
-mktodo <list_label> <item_title> <item_deadline> <optional_item_description>
+4. mktodo <list_label> <item_title> <item_deadline> <optional_item_description>
 - > add a new item to the specified list with the given information
-toggle <list_label> <item_index>
+5. toggle <list_label> <item_index>
 - > toggle "done" for the specified item on the given list
-rm <list_label> <item_index>
+6. rm <list_label> <item_index>
 - > remove the specified item on the given list
-purge <list_label>
+7. purge <list_label>
 - > remove all "done" items on the given list
-up <list_label> <item_index> <optional_amount>
+8. up <list_label> <item_index> <optional_amount>
 - > move the specified item higher on the given list
-down <list_label> <item_index> <optional_amount>
+9. down <list_label> <item_index> <optional_amount>
 - > move the specified item higher on the given list
-swap <list_label> <item_index_1> <item_index_2>
+10. swap <list_label> <item_index_1> <item_index_2>
 - > swap the positions of the specified items on the given list
-sort <list_label>
+11. sort <list_label>
 - > sort the given list by deadline
-priority <list_label>
+12. priority <list_label>
 - > print the all information for the item at the top of the given list
-print <list_label> <optional_index>
+13. print <list_label> <optional_index>
 - > print all items of the given list if index is not provided
 - >print the specific item of the given list if index is provided
-quit
+14. quit
 
 ### Version 1: One true list
 - [x] Phase 1: One true list 
