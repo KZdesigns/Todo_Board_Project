@@ -49,7 +49,7 @@ deleting items
 managing multiple lists in a single board
 
 ## Gameplay - Video
-- Version 1: https://www.youtube.com/embed/wb86qFcJQVU"
+- Version 1: https://www.youtube.com/embed/wb86qFcJQVU
 - Version 2: https://www.youtube.com/embed/zXAnRmPj9_c
 
 ## Example Code
